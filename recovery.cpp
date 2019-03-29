@@ -1359,6 +1359,11 @@ int main(int argc, char **argv) {
     return 0;
   }
 
+#ifndef RELEASE_BUILD
+  // Set SELinux to permissive
+  security_setenforce(0);
+#endif
+
   time_t start = time(nullptr);
 
   // redirect_stdio should be called only in non-sideload mode. Otherwise
